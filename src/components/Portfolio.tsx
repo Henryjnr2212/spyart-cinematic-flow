@@ -1,12 +1,55 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import editorialDesign from "@/assets/editorial-design.jpeg";
 
 const projects = [
-  { id: 1, title: "Brand Identity", category: "Graphic Design", color: "from-vibrant-red to-red-600" },
-  { id: 2, title: "Motion Reel", category: "Motion Design", color: "from-neon-blue to-cyan-400" },
-  { id: 3, title: "Product Launch", category: "Motion Design", color: "from-purple-500 to-pink-500" },
-  { id: 4, title: "Corporate Branding", category: "Graphic Design", color: "from-orange-500 to-red-500" },
-  { id: 5, title: "Social Campaign", category: "Mixed Media", color: "from-green-500 to-emerald-500" },
-  { id: 6, title: "Editorial Design", category: "Graphic Design", color: "from-blue-500 to-indigo-500" },
+  { 
+    id: 1, 
+    title: "Brand Identity", 
+    category: "Graphic Design", 
+    color: "from-vibrant-red to-red-600",
+    slug: "brand-identity",
+    thumbnail: "/projects/new-zana-logo.pdf"
+  },
+  { 
+    id: 2, 
+    title: "Motion Reel", 
+    category: "Motion Design", 
+    color: "from-neon-blue to-cyan-400",
+    slug: "motion-reel",
+    thumbnail: "/projects/motionreel.mp4"
+  },
+  { 
+    id: 3, 
+    title: "Product Launch", 
+    category: "Motion Design", 
+    color: "from-purple-500 to-pink-500",
+    slug: "product-launch",
+    thumbnail: "/projects/product-launch.mp4"
+  },
+  { 
+    id: 4, 
+    title: "Corporate Branding", 
+    category: "Graphic Design", 
+    color: "from-orange-500 to-red-500",
+    slug: "corporate-branding",
+    thumbnail: "/projects/eban-re-branding.pdf"
+  },
+  { 
+    id: 5, 
+    title: "Social Campaign", 
+    category: "Mixed Media", 
+    color: "from-green-500 to-emerald-500",
+    slug: "social-campaign"
+  },
+  { 
+    id: 6, 
+    title: "Editorial Design", 
+    category: "Graphic Design", 
+    color: "from-blue-500 to-indigo-500",
+    slug: "editorial-design",
+    thumbnail: editorialDesign
+  },
 ];
 
 export const Portfolio = () => {
@@ -24,18 +67,48 @@ export const Portfolio = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <div
+            <Link
               key={project.id}
-              className="group relative aspect-square overflow-hidden cursor-pointer animate-fade-in"
+              to={`/project/${project.slug}`}
+              className="group relative aspect-square overflow-hidden cursor-pointer animate-fade-in block"
               style={{ animationDelay: `${index * 100}ms` }}
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              <div 
-                className={`absolute inset-0 bg-gradient-to-br ${project.color} transition-all duration-500 ${
-                  hoveredId === project.id ? "scale-110" : "scale-100"
-                }`}
-              />
+              {/* Background - thumbnail or gradient */}
+              {project.thumbnail ? (
+                project.thumbnail.endsWith('.mp4') ? (
+                  <video 
+                    className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
+                    style={{ transform: hoveredId === project.id ? "scale(1.1)" : "scale(1)" }}
+                    src={project.thumbnail}
+                    muted
+                    loop
+                    playsInline
+                    onMouseEnter={(e) => e.currentTarget.play()}
+                    onMouseLeave={(e) => e.currentTarget.pause()}
+                  />
+                ) : project.thumbnail.endsWith('.pdf') ? (
+                  <div 
+                    className={`absolute inset-0 bg-gradient-to-br ${project.color} transition-all duration-500 flex items-center justify-center`}
+                    style={{ transform: hoveredId === project.id ? "scale(1.1)" : "scale(1)" }}
+                  >
+                    <div className="text-white/30 text-6xl font-bold">PDF</div>
+                  </div>
+                ) : (
+                  <img 
+                    src={project.thumbnail} 
+                    alt={project.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
+                    style={{ transform: hoveredId === project.id ? "scale(1.1)" : "scale(1)" }}
+                  />
+                )
+              ) : (
+                <div 
+                  className={`absolute inset-0 bg-gradient-to-br ${project.color} transition-all duration-500`}
+                  style={{ transform: hoveredId === project.id ? "scale(1.1)" : "scale(1)" }}
+                />
+              )}
               
               <div className="absolute inset-0 bg-black/40 transition-opacity duration-300 group-hover:bg-black/20" />
               
@@ -56,7 +129,7 @@ export const Portfolio = () => {
                   <span className="text-sm font-semibold">VIEW</span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

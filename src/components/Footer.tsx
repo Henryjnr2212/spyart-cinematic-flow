@@ -1,3 +1,5 @@
+import logo from "@/assets/logo.png";
+
 export const Footer = () => {
   return (
     <footer className="bg-black text-white py-12 px-6 overflow-hidden">
@@ -16,8 +18,7 @@ export const Footer = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-white/10">
           <div>
-            <p className="text-2xl font-bold">SPYART</p>
-            <p className="text-sm text-white/60">Graphics Inc.</p>
+            <img src={logo} alt="SPYART Logo" className="w-40 mb-2" />
           </div>
 
           <div className="text-center md:text-right">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import designerPortrait from "@/assets/designer-portrait.jpg";
+import logo from "@/assets/logo.png";
 
 export const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -30,12 +31,11 @@ export const Hero = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-4 animate-fade-in">
         <div className="mb-6">
-          <h1 className="text-7xl md:text-9xl font-bold tracking-tighter text-white mb-2">
-            SPYART
-          </h1>
-          <p className="text-2xl md:text-4xl font-light text-white/80">
-            Graphics Inc.
-          </p>
+          <img 
+            src={logo} 
+            alt="SPYART Graphics Inc. Logo" 
+            className="w-80 md:w-[500px] mx-auto mb-8"
+          />
         </div>
         
         <div className="relative">

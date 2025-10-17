@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Instagram, Linkedin, Youtube, Mail } from "lucide-react";
+import { Instagram, MessageCircle, Facebook } from "lucide-react";
 import { toast } from "sonner";
 
 export const Contact = () => {
@@ -19,10 +19,9 @@ export const Contact = () => {
   };
 
   const socials = [
-    { icon: Instagram, label: "Instagram", href: "#" },
-    { icon: Linkedin, label: "Behance", href: "#" },
-    { icon: Youtube, label: "YouTube", href: "#" },
-    { icon: Mail, label: "Email", href: "mailto:contact@spyart.com" },
+    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/_spyart.motion?igsh=Z2EyY3UwZjlwNGgz" },
+    { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/+233591392513" },
+    { icon: Facebook, label: "Facebook", href: "#" },
   ];
 
   return (
