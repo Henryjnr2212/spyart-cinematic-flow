@@ -65,12 +65,12 @@ export const Portfolio = () => {
           A glimpse into creative solutions and visual storytelling
         </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {projects.map((project, index) => (
             <Link
               key={project.id}
               to={`/project/${project.slug}`}
-              className="group relative aspect-square overflow-hidden cursor-pointer animate-fade-in block"
+              className="group relative aspect-square overflow-hidden cursor-pointer animate-fade-in block rounded-lg"
               style={{ animationDelay: `${index * 100}ms` }}
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
@@ -80,33 +80,37 @@ export const Portfolio = () => {
                 project.thumbnail.endsWith('.mp4') ? (
                   <video 
                     className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
-                    style={{ transform: hoveredId === project.id ? "scale(1.1)" : "scale(1)" }}
+                    style={{ transform: hoveredId === project.id ? "scale(1.05)" : "scale(1)" }}
                     src={project.thumbnail}
                     muted
                     loop
                     playsInline
+                    preload="metadata"
                     onMouseEnter={(e) => e.currentTarget.play()}
                     onMouseLeave={(e) => e.currentTarget.pause()}
+                    onTouchStart={(e) => e.currentTarget.play()}
                   />
                 ) : project.thumbnail.endsWith('.pdf') ? (
                   <iframe 
-                    src={project.thumbnail}
+                    src={`${project.thumbnail}#view=FitH`}
                     className="absolute inset-0 w-full h-full pointer-events-none transition-all duration-500"
-                    style={{ transform: hoveredId === project.id ? "scale(1.1)" : "scale(1)" }}
+                    style={{ transform: hoveredId === project.id ? "scale(1.05)" : "scale(1)" }}
                     title={project.title}
+                    loading="lazy"
                   />
                 ) : (
                   <img 
                     src={project.thumbnail} 
                     alt={project.title}
                     className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
-                    style={{ transform: hoveredId === project.id ? "scale(1.1)" : "scale(1)" }}
+                    style={{ transform: hoveredId === project.id ? "scale(1.05)" : "scale(1)" }}
+                    loading="lazy"
                   />
                 )
               ) : (
                 <div 
                   className={`absolute inset-0 bg-gradient-to-br ${project.color} transition-all duration-500`}
-                  style={{ transform: hoveredId === project.id ? "scale(1.1)" : "scale(1)" }}
+                  style={{ transform: hoveredId === project.id ? "scale(1.05)" : "scale(1)" }}
                 />
               )}
               
