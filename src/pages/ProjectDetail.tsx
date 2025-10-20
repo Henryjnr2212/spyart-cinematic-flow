@@ -125,21 +125,21 @@ export default function ProjectDetail() {
                       Your browser does not support the video tag.
                     </video>
                   ) : (
-                    <div className="bg-white/5 p-8 max-w-4xl mx-auto">
-                      <div className="flex items-center justify-between mb-4">
-                        <p className="text-white/70">PDF Document</p>
+                    <div className="bg-white/5 max-w-5xl mx-auto overflow-hidden">
+                      <div className="flex items-center justify-between p-4 bg-white/10">
+                        <p className="text-white/70 font-semibold">PDF Document</p>
                         <a 
                           href={file.url} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="text-neon-blue hover:underline"
+                          className="text-neon-blue hover:underline flex items-center gap-2"
                         >
-                          Open in new tab
+                          Open in new tab →
                         </a>
                       </div>
                       <iframe 
                         src={file.url}
-                        className="w-full h-[600px] bg-white"
+                        className="w-full h-[800px] bg-white"
                         title={file.label || 'PDF Document'}
                       />
                     </div>

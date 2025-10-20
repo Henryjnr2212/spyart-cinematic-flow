@@ -21,7 +21,7 @@ export const Contact = () => {
   const socials = [
     { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/_spyart.motion?igsh=Z2EyY3UwZjlwNGgz" },
     { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/+233591392513" },
-    { icon: Facebook, label: "Facebook", href: "#" },
+    { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=100064200931867" },
   ];
 
   return (
