@@ -89,12 +89,12 @@ export const Portfolio = () => {
                     onMouseLeave={(e) => e.currentTarget.pause()}
                   />
                 ) : project.thumbnail.endsWith('.pdf') ? (
-                  <div 
-                    className={`absolute inset-0 bg-gradient-to-br ${project.color} transition-all duration-500 flex items-center justify-center`}
+                  <iframe 
+                    src={project.thumbnail}
+                    className="absolute inset-0 w-full h-full pointer-events-none transition-all duration-500"
                     style={{ transform: hoveredId === project.id ? "scale(1.1)" : "scale(1)" }}
-                  >
-                    <div className="text-white/30 text-6xl font-bold">PDF</div>
-                  </div>
+                    title={project.title}
+                  />
                 ) : (
                   <img 
                     src={project.thumbnail} 
